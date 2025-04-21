@@ -33,7 +33,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: gcr.io/ntu-hwtest/myapp:1.0.0
+        image: us-central1-docker.pkg.dev/ntu-hwtest/gcp-hw-images/myapp:1.0.0
         imagePullPolicy: Always
         resources:
           limits:

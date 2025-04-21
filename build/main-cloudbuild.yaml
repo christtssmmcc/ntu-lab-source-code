@@ -18,26 +18,23 @@ steps:
 
   - id: 'build'
     name: 'gcr.io/cloud-builders/docker'
-    entrypoint: 'bash'
-    args: 
-      - '-c'
-      - |
-          docker build -t gcr.io/ntu-hwtest/myapp:${SHORT_SHA} ./src
-
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/ntu-hwtest/gcp-hw-images/myapp', '.']
+    waitFor: ['-']
 
 ### Test
 
+#Retag
+  - id: "retag"
+    name: 'gcr.io/cloud-builders/docker'
+    args: ['tag', 'us-central1-docker.pkg.dev/ntu-hwtest/gcp-hw-images/myapp', 'us-central1-docker.pkg.dev/ntu-hwtest/gcp-hw-images/myapp:prod']
 
 ### Publish
   - id: 'publish'
     name: 'gcr.io/cloud-builders/docker'
-    entrypoint: 'bash'
-    args: 
-      - '-c'
-      - |
-          docker push gcr.io/ntu-hwtest/myapp:${SHORT_SHA}
+    args: ['push',  'us-central1-docker.pkg.dev/ntu-hwtest/gcp-hw-images/myapp:prod']
 
-
+images:
+  - us-central1-docker.pkg.dev/ntu-hwtest/gcp-hw-images/myapp
 
 ### Deploy
   - id: 'deploy'
@@ -55,9 +52,9 @@ steps:
             --zone "${_ZONE}"  
 
 
-          sed -i 's|gcr.io/ntu-hwtest/myapp:.*|gcr.io/ntu-hwtest/myapp:${SHORT_SHA}|' ./k8s/deployments/canary/*.yaml
+            sed -i 's|us-central1-docker.pkg.dev/ntu-hwtest/gcp-hw-images/myapp:.*|us-central1-docker.pkg.dev/ntu-hwtest/gcp-hw-images/myapp:prod|' ./k8s/deployments/prod/*.yaml
           
           kubectl get ns production || kubectl create ns production
-          kubectl apply --namespace production --recursive -f k8s/deployments/canary
+          kubectl apply --namespace production --recursive -f k8s/deployments/prod
           kubectl apply --namespace production --recursive -f k8s/services
 
