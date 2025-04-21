@@ -33,8 +33,7 @@ steps:
     name: 'gcr.io/cloud-builders/docker'
     args: ['push',  'us-central1-docker.pkg.dev/ntu-hwtest/gcp-hw-images/myapp:prod']
 
-images:
-  - us-central1-docker.pkg.dev/ntu-hwtest/gcp-hw-images/myapp
+
 
 ### Deploy
   - id: 'deploy'
@@ -58,3 +57,5 @@ images:
           kubectl apply --namespace production --recursive -f k8s/deployments/prod
           kubectl apply --namespace production --recursive -f k8s/services
 
+images:
+  - us-central1-docker.pkg.dev/ntu-hwtest/gcp-hw-images/myapp
