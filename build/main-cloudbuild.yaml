@@ -59,3 +59,6 @@ steps:
 
 images:
   - us-central1-docker.pkg.dev/ntu-hwtest/gcp-hw-images/myapp
+
+options:
+  logging: CLOUD_LOGGING_ONLY
