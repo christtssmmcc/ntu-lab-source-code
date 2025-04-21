@@ -52,7 +52,7 @@ images:
             --zone "${_ZONE}"  
 
 
-            sed -i 's|us-central1-docker.pkg.dev/ntu-hwtest/gcp-hw-images/myapp:.*|us-central1-docker.pkg.dev/ntu-hwtest/gcp-hw-images/myapp:prod|' ./k8s/deployments/prod/*.yaml
+          sed -i 's|us-central1-docker.pkg.dev/ntu-hwtest/gcp-hw-images/myapp:.*|us-central1-docker.pkg.dev/ntu-hwtest/gcp-hw-images/myapp:prod|' ./k8s/deployments/prod/*.yaml
           
           kubectl get ns production || kubectl create ns production
           kubectl apply --namespace production --recursive -f k8s/deployments/prod
