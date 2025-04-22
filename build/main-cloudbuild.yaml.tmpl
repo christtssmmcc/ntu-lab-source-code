@@ -26,12 +26,12 @@ steps:
 #Retag
   - id: "retag"
     name: 'gcr.io/cloud-builders/docker'
-    args: ['tag', 'us-central1-docker.pkg.dev/$PROJECT_ID/&AR_REPO_NAME/$APP_NAME', 'us-central1-docker.pkg.dev/$PROJECT_ID/&AR_REPO_NAME/$APP_NAME:prod']
+    args: ['tag', 'us-central1-docker.pkg.dev/$PROJECT_ID/&AR_REPO_NAME/$APP_NAME', 'us-central1-docker.pkg.dev/$PROJECT_ID/&AR_REPO_NAME/$APP_NAME:${SHORT_SHA}']
 
 ### Publish
   - id: 'publish'
     name: 'gcr.io/cloud-builders/docker'
-    args: ['push',  'us-central1-docker.pkg.dev/$PROJECT_ID/&AR_REPO_NAME/$APP_NAME:prod']
+    args: ['push',  'us-central1-docker.pkg.dev/$PROJECT_ID/&AR_REPO_NAME/$APP_NAME:${SHORT_SHA}']
 
 
 
@@ -51,7 +51,7 @@ steps:
             --zone "${ZONE}"  
 
 
-          sed -i 's|us-central1-docker.pkg.dev/$PROJECT_ID/&AR_REPO_NAME/$APP_NAME:.*|us-central1-docker.pkg.dev/$PROJECT_ID/&AR_REPO_NAME/$APP_NAME:prod|' ./k8s/deployments/prod/*.yaml
+          sed -i 's|us-central1-docker.pkg.dev/$PROJECT_ID/&AR_REPO_NAME/$APP_NAME:.*|us-central1-docker.pkg.dev/$PROJECT_ID/&AR_REPO_NAME/$APP_NAME:${SHORT_SHA}|' ./k8s/deployments/prod/*.yaml
           
           kubectl get ns production || kubectl create ns production
           kubectl apply --namespace production --recursive -f k8s/deployments/prod

@@ -26,12 +26,12 @@ steps:
 #Retag
   - id: "retag"
     name: 'gcr.io/cloud-builders/docker'
-    args: ['tag', 'us-central1-docker.pkg.dev/ntu-hwtest/gcp-hw-images/myapp', 'us-central1-docker.pkg.dev/ntu-hwtest/gcp-hw-images/myapp:prod']
+    args: ['tag', 'us-central1-docker.pkg.dev/ntu-hwtest/gcp-hw-images/myapp', 'us-central1-docker.pkg.dev/ntu-hwtest/gcp-hw-images/myapp:${SHORT_SHA}']
 
 ### Publish
   - id: 'publish'
     name: 'gcr.io/cloud-builders/docker'
-    args: ['push',  'us-central1-docker.pkg.dev/ntu-hwtest/gcp-hw-images/myapp:prod']
+    args: ['push',  'us-central1-docker.pkg.dev/ntu-hwtest/gcp-hw-images/myapp:${SHORT_SHA}']
 
 
 
@@ -51,7 +51,7 @@ steps:
             --zone "us-central1-b"  
 
 
-          sed -i 's|us-central1-docker.pkg.dev/ntu-hwtest/gcp-hw-images/myapp:.*|us-central1-docker.pkg.dev/ntu-hwtest/gcp-hw-images/myapp:prod|' ./k8s/deployments/prod/*.yaml
+          sed -i 's|us-central1-docker.pkg.dev/ntu-hwtest/gcp-hw-images/myapp:.*|us-central1-docker.pkg.dev/ntu-hwtest/gcp-hw-images/myapp:${SHORT_SHA}|' ./k8s/deployments/prod/*.yaml
           
           kubectl get ns production || kubectl create ns production
           kubectl apply --namespace production --recursive -f k8s/deployments/prod
