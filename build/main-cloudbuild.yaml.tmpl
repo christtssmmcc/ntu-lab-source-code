@@ -46,9 +46,9 @@ steps:
       - |
           PROJECT=$$(gcloud config get-value core/project)          
 
-          gcloud container clusters get-credentials "${_CLUSTER}" \
+          gcloud container clusters get-credentials "${CLUSTER}" \
             --project "$${PROJECT}" \
-            --zone "${_ZONE}"  
+            --zone "${ZONE}"  
 
 
           sed -i 's|us-central1-docker.pkg.dev/$PROJECT_ID/&AR_REPO_NAME/$APP_NAME:.*|us-central1-docker.pkg.dev/$PROJECT_ID/&AR_REPO_NAME/$APP_NAME:prod|' ./k8s/deployments/prod/*.yaml

@@ -46,9 +46,9 @@ steps:
       - |
           PROJECT=$$(gcloud config get-value core/project)          
 
-          gcloud container clusters get-credentials "${_CLUSTER}" \
+          gcloud container clusters get-credentials "gke-progression-cluster" \
             --project "$${PROJECT}" \
-            --zone "${_ZONE}"  
+            --zone "us-central1-b"  
 
 
           sed -i 's|us-central1-docker.pkg.dev/ntu-hwtest/gcp-hw-images/myapp:.*|us-central1-docker.pkg.dev/ntu-hwtest/gcp-hw-images/myapp:prod|' ./k8s/deployments/prod/*.yaml
