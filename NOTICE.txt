@@ -1,0 +1,10 @@
+The kubernetes manifest YAML in k8s/deployments/prod/frontend.yaml.tmpl
+was created by GoogleCloudPlatform. (https://github.com/GoogleCloudPlatform/microservices-demo/blob/v0.10.2/release/kubernetes-manifests.yaml)
+Thie project extract the frontend deployment and set the image repo to placeholder. 
+
+The kubernetes manifest YAML in k8s/microservices-demo.yaml
+was created by GoogleCloudPlatform. (https://github.com/GoogleCloudPlatform/microservices-demo/blob/v0.10.2/release/kubernetes-manifests.yaml)
+
+The application source code in src/frontend
+was created by GoogleCloudPlatform. (https://github.com/GoogleCloudPlatform/microservices-demo/blob/v0.10.2/src/frontend)
+Thie project removes the platfrom parameter in Dockerfile. 
