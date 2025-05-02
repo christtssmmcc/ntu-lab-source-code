@@ -15,18 +15,10 @@
 steps:
 
 ### Build
-
   - id: 'build'
     name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/$AR_REPO_NAME/$APP_NAME', './src/frontend']
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/$AR_REPO_NAME/$APP_NAME:${SHORT_SHA}', './src/frontend']
     waitFor: ['-']
-
-### Test
-
-#Retag
-  - id: "retag"
-    name: 'gcr.io/cloud-builders/docker'
-    args: ['tag', 'us-central1-docker.pkg.dev/$PROJECT_ID/$AR_REPO_NAME/$APP_NAME', 'us-central1-docker.pkg.dev/$PROJECT_ID/$AR_REPO_NAME/$APP_NAME:${SHORT_SHA}']
 
 ### Publish
   - id: 'publish'
