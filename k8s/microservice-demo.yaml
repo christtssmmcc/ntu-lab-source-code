@@ -69,10 +69,10 @@ spec:
             port: 8080
         resources:
           requests:
-            cpu: 100m
+            cpu: 30m
             memory: 64Mi
           limits:
-            cpu: 200m
+            cpu: 100m
             memory: 128Mi
 ---
 apiVersion: v1
@@ -151,10 +151,10 @@ spec:
             value: "cartservice:7070"
           resources:
             requests:
-              cpu: 100m
+              cpu: 30m
               memory: 64Mi
             limits:
-              cpu: 200m
+              cpu: 100m
               memory: 128Mi
 ---
 apiVersion: v1
@@ -228,10 +228,10 @@ spec:
           value: "1"
         resources:
           requests:
-            cpu: 100m
+            cpu: 30m
             memory: 220Mi
           limits:
-            cpu: 200m
+            cpu: 100m
             memory: 450Mi
 ---
 apiVersion: v1
@@ -344,7 +344,7 @@ spec:
               cpu: 100m
               memory: 64Mi
             limits:
-              cpu: 200m
+              cpu: 300m
               memory: 128Mi
 ---
 apiVersion: v1
@@ -429,10 +429,10 @@ spec:
             port: 50051
         resources:
           requests:
-            cpu: 100m
+            cpu: 30m
             memory: 64Mi
           limits:
-            cpu: 200m
+            cpu: 100m
             memory: 128Mi
 ---
 apiVersion: v1
@@ -502,10 +502,10 @@ spec:
             port: 3550
         resources:
           requests:
-            cpu: 100m
+            cpu: 30m
             memory: 64Mi
           limits:
-            cpu: 200m
+            cpu: 100m
             memory: 128Mi
 ---
 apiVersion: v1
@@ -570,7 +570,7 @@ spec:
             cpu: 100m
             memory: 64Mi
           limits:
-            cpu: 200m
+            cpu: 300m
             memory: 128Mi
         readinessProbe:
           initialDelaySeconds: 15
@@ -648,9 +648,9 @@ spec:
         resources:
           limits:
             memory: 256Mi
-            cpu: 125m
+            cpu: 100m
           requests:
-            cpu: 70m
+            cpu: 30m
             memory: 200Mi
       volumes:
       - name: redis-data
@@ -681,7 +681,6 @@ spec:
   selector:
     matchLabels:
       app: loadgenerator
-  replicas: 1
   template:
     metadata:
       labels:
@@ -809,7 +808,7 @@ spec:
             cpu: 100m
             memory: 64Mi
           limits:
-            cpu: 200m
+            cpu: 300m
             memory: 128Mi
 ---
 apiVersion: v1
@@ -879,10 +878,10 @@ spec:
             port: 50051
         resources:
           requests:
-            cpu: 100m
+            cpu: 30m
             memory: 64Mi
           limits:
-            cpu: 200m
+            cpu: 100m
             memory: 128Mi
 ---
 apiVersion: v1
@@ -944,10 +943,10 @@ spec:
           value: "9555"
         resources:
           requests:
-            cpu: 100m
+            cpu: 30m
             memory: 180Mi
           limits:
-            cpu: 200m
+            cpu: 100m
             memory: 300Mi
         readinessProbe:
           initialDelaySeconds: 20
