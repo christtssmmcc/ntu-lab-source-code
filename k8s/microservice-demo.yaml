@@ -567,10 +567,10 @@ spec:
           value: "redis-cart:6379"
         resources:
           requests:
-            cpu: 200m
+            cpu: 100m
             memory: 64Mi
           limits:
-            cpu: 300m
+            cpu: 200m
             memory: 128Mi
         readinessProbe:
           initialDelaySeconds: 15
@@ -747,10 +747,10 @@ spec:
           value: "1"
         resources:
           requests:
-            cpu: 300m
+            cpu: 100m
             memory: 256Mi
           limits:
-            cpu: 500m
+            cpu: 200m
             memory: 512Mi
 ---
 apiVersion: v1
@@ -944,10 +944,10 @@ spec:
           value: "9555"
         resources:
           requests:
-            cpu: 200m
+            cpu: 100m
             memory: 180Mi
           limits:
-            cpu: 300m
+            cpu: 200m
             memory: 300Mi
         readinessProbe:
           initialDelaySeconds: 20
